@@ -1,5 +1,6 @@
 import sys
 import board as brd
+import opponent
 
 gameRunning = True
 
@@ -20,6 +21,8 @@ else:
 # Set up board
 board = brd.Board()
 board.init_board()
+
+opponent = opponent.Opponent()
    
 while gameRunning:
     # print board
@@ -27,7 +30,10 @@ while gameRunning:
     # prompt for input
     gameSelection = input("\nEnter grid position to fire at.\n")
     # handle input
-    # do AI turn
+    opponent.checkIfHit(int(gameSelection))
     # check for game over conditions
+    if opponent.checkRemainingBoats == 0:
+        print("Game Over! You Win.")
+        gameRunning = False
 
 
